@@ -9,6 +9,12 @@ public partial class Player : CharacterBody2D
     [Export] public float gravity = 500f;
 
     private int _score = 0;
+    private Label _scoreText;
+
+    public override void _Ready()
+    {
+        _scoreText = GetNode<Label>("CanvasLayer/ScoreText");
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -53,6 +59,7 @@ public partial class Player : CharacterBody2D
     public void IncreaseScore(int amount)
     {
         _score += amount;
+        _scoreText.Text = $"Score: {_score}";
         
         GD.Print("Score increased!");
     }
