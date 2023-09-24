@@ -36,5 +36,15 @@ public partial class Player : CharacterBody2D
             
         Velocity = velocity;
         MoveAndSlide();
+
+        if (GlobalPosition.Y > 100)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        GetTree().ReloadCurrentScene();
     }
 }
