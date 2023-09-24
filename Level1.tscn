@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drnd4folg3bsy"]
+[gd_scene load_steps=16 format=3 uid="uid://drnd4folg3bsy"]
 
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://Sprites/Tiles/tiles_packed.png" id="1_dk6w4"]
 [ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://Sprites/Characters/character_0000.png" id="2_1n6g6"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Enemy.cs" id="4_v1n6c"]
 [ext_resource type="Script" path="res://Spikes.cs" id="6_7h855"]
 [ext_resource type="Texture2D" uid="uid://bj4phc7ceh37p" path="res://Sprites/Objects/tile_0068.png" id="7_xbqs8"]
+[ext_resource type="Texture2D" uid="uid://ydbe1tyhvygu" path="res://Sprites/Objects/tile_0151.png" id="8_6lo8c"]
+[ext_resource type="Script" path="res://Coin.cs" id="8_gw5nm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yctkf"]
 texture = ExtResource("1_dk6w4")
@@ -630,6 +632,9 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgm6i"]
 size = Vector2(14, 8)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkq6b"]
+radius = 6.0
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -674,5 +679,16 @@ texture = ExtResource("7_xbqs8")
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_fgm6i")
 
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2(-179, -48)
+script = ExtResource("8_gw5nm")
+
+[node name="Sprite" type="Sprite2D" parent="Coin"]
+texture = ExtResource("8_6lo8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+shape = SubResource("CircleShape2D_kkq6b")
+
 [connection signal="body_entered" from="Enemy" to="Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Spikes" to="Spikes" method="OnBodyEntered"]
+[connection signal="body_entered" from="Coin" to="Coin" method="OnBodyEntered"]

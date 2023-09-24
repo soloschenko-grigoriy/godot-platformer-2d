@@ -8,6 +8,8 @@ public partial class Player : CharacterBody2D
     [Export] public float jumpForce = 200f;
     [Export] public float gravity = 500f;
 
+    private int _score = 0;
+
     public override void _PhysicsProcess(double delta)
     {
         var velocity = Velocity;
@@ -46,5 +48,12 @@ public partial class Player : CharacterBody2D
     public void GameOver()
     {
         GetTree().ReloadCurrentScene();
+    }
+    
+    public void IncreaseScore(int amount)
+    {
+        _score += amount;
+        
+        GD.Print("Score increased!");
     }
 }
